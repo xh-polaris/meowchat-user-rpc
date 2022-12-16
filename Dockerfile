@@ -15,7 +15,7 @@ ADD go.sum .
 RUN go mod download
 COPY . .
 COPY ./etc /app/etc
-RUN go build -ldflags="-s -w" -o /app/meowchat-user-rpc .
+RUN go build -ldflags="-s -w" -o /app/user-rpc .
 
 
 FROM scratch
@@ -25,7 +25,7 @@ COPY --from=builder /usr/share/zoneinfo/Asia/Shanghai /usr/share/zoneinfo/Asia/S
 ENV TZ Asia/Shanghai
 
 WORKDIR /app
-COPY --from=builder /app/meowchat-user-rpc /app/meowchat-user-rpc
+COPY --from=builder /app/user-rpc /app/user-rpc
 COPY --from=builder /app/etc /app/etc
 
-CMD ["./meowchat-user-rpc", "-f", "etc/dev.yaml"]
+CMD ["./user-rpc", "-f", "etc/user.yaml"]
