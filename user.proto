@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package user;
+
+option go_package = './pb';
+
+message GetUserReq {
+  string userId = 1;
+}
+
+message GetUserResp {
+  string userId = 1;
+  string avatarUrl = 2;
+  string nickname = 3;
+}
+
+message UpdateUserReq {
+  string userId = 1;
+  // 如果不更新头像，留空
+  string avatarUrl = 2;
+  // 如果不更新昵称，留空
+  string nickname = 3;
+}
+
+message UpdateUserResp {
+
+}
+
+service user {
+  rpc GetUser(GetUserReq) returns (GetUserResp);
+  rpc UpdateUser(UpdateUserReq) returns (UpdateUserResp);
+}
