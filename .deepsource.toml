@@ -1,15 +1,11 @@
 version = 1
 
 [[analyzers]]
-name = "test-coverage"
-enabled = true
-
-[[analyzers]]
 name = "go"
 enabled = true
 
   [analyzers.meta]
-  import_root = "github.com/xh-polaris/meowchat-bff"
+  import_root = "github.com/xh-polaris/meowchat-user-rpc"
 
 [[transformers]]
 name = "gofmt"
