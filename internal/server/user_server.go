@@ -31,3 +31,8 @@ func (s *UserServer) UpdateUser(ctx context.Context, in *pb.UpdateUserReq) (*pb.
 	l := logic.NewUpdateUserLogic(ctx, s.svcCtx)
 	return l.UpdateUser(in)
 }
+
+func (s *UserServer) GetManyUser(ctx context.Context, in *pb.GetManyUserReq) (*pb.GetManyUserResp, error) {
+	l := logic.NewGetManyUserLogic(ctx, s.svcCtx)
+	return l.GetManyUser(in)
+}
