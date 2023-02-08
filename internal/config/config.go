@@ -11,5 +11,5 @@ type Config struct {
 		URL string
 		DB  string
 	}
-	CacheConf cache.CacheConf
+	Cache cache.CacheConf
 }

@@ -13,14 +13,18 @@ import (
 )
 
 type (
-	GetUserReq     = pb.GetUserReq
-	GetUserResp    = pb.GetUserResp
-	UpdateUserReq  = pb.UpdateUserReq
-	UpdateUserResp = pb.UpdateUserResp
+	GetManyUserReq  = pb.GetManyUserReq
+	GetManyUserResp = pb.GetManyUserResp
+	GetUserReq      = pb.GetUserReq
+	GetUserResp     = pb.GetUserResp
+	UpdateUserReq   = pb.UpdateUserReq
+	UpdateUserResp  = pb.UpdateUserResp
+	UserInfo        = pb.UserInfo
 
 	User interface {
 		GetUser(ctx context.Context, in *GetUserReq, opts ...grpc.CallOption) (*GetUserResp, error)
 		UpdateUser(ctx context.Context, in *UpdateUserReq, opts ...grpc.CallOption) (*UpdateUserResp, error)
+		GetManyUser(ctx context.Context, in *GetManyUserReq, opts ...grpc.CallOption) (*GetManyUserResp, error)
 	}
 
 	defaultUser struct {
@@ -42,4 +46,9 @@ func (m *defaultUser) GetUser(ctx context.Context, in *GetUserReq, opts ...grpc.
 func (m *defaultUser) UpdateUser(ctx context.Context, in *UpdateUserReq, opts ...grpc.CallOption) (*UpdateUserResp, error) {
 	client := pb.NewUserClient(m.cli.Conn())
 	return client.UpdateUser(ctx, in, opts...)
+}
+
+func (m *defaultUser) GetManyUser(ctx context.Context, in *GetManyUserReq, opts ...grpc.CallOption) (*GetManyUserResp, error) {
+	client := pb.NewUserClient(m.cli.Conn())
+	return client.GetManyUser(ctx, in, opts...)
 }

@@ -3,17 +3,25 @@ syntax = "proto3";
 package user;
 
 option go_package = './pb';
-
+message UserInfo{
+  string userId = 1;
+  string avatarUrl = 2;
+  string nickname = 3;
+}
 message GetUserReq {
   string userId = 1;
 }
-
 message GetUserResp {
   string userId = 1;
   string avatarUrl = 2;
   string nickname = 3;
 }
-
+message GetManyUserReq{
+  repeated string userId=1;
+}
+message GetManyUserResp{
+  repeated UserInfo userInfo=1;
+}
 message UpdateUserReq {
   string userId = 1;
   // 如果不更新头像，留空
@@ -29,4 +37,5 @@ message UpdateUserResp {
 service user {
   rpc GetUser(GetUserReq) returns (GetUserResp);
   rpc UpdateUser(UpdateUserReq) returns (UpdateUserResp);
+  rpc GetManyUser(GetManyUserReq) returns (GetManyUserResp);
 }
