@@ -23,18 +23,21 @@ func NewGetManyUserLogic(ctx context.Context, svcCtx *svc.ServiceContext) *GetMa
 	}
 }
 
+// GetManyUser
+// 若查询失败不返回异常，得到空结构体/*
 func (l *GetManyUserLogic) GetManyUser(in *pb.GetManyUserReq) (*pb.GetManyUserResp, error) {
-	resp := make([]*pb.UserInfo, len(in.UserId))
+	resp := make([]*pb.UserInfo, 0, len(in.UserId))
 	for _, userid := range in.UserId {
 		res, err := l.svcCtx.UserModel.FindOne(l.ctx, userid)
 		if err != nil {
-			return nil, err
+			resp = append(resp, &pb.UserInfo{})
+		} else {
+			resp = append(resp, &pb.UserInfo{
+				UserId:    res.ID.Hex(),
+				AvatarUrl: res.AvatarUrl,
+				Nickname:  res.Nickname,
+			})
 		}
-		resp = append(resp, &pb.UserInfo{
-			UserId:    res.ID.Hex(),
-			AvatarUrl: res.AvatarUrl,
-			Nickname:  res.Nickname,
-		})
 	}
 	return &pb.GetManyUserResp{UserInfo: resp}, nil
 }
