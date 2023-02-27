@@ -4,29 +4,41 @@ package user;
 
 option go_package = './pb';
 
+message User {
+  string id = 1;
+  string avatarUrl = 2;
+  string nickname = 3;
+}
+
 message GetUserReq {
   string userId = 1;
 }
 
 message GetUserResp {
-  string userId = 1;
-  string avatarUrl = 2;
-  string nickname = 3;
+  User user = 1;
 }
 
 message UpdateUserReq {
-  string userId = 1;
-  // 如果不更新头像，留空
-  string avatarUrl = 2;
-  // 如果不更新昵称，留空
-  string nickname = 3;
+  // 如果不更新头像或昵称，对应字段留空
+  User user = 1;
 }
 
 message UpdateUserResp {
+}
 
+message SearchUserReq {
+  string nickname = 1;
+  int64 skip = 2;
+  int64 count = 3;
+}
+
+message SearchUserResp {
+  repeated User users = 1;
+  int64 total = 2;
 }
 
 service user {
   rpc GetUser(GetUserReq) returns (GetUserResp);
   rpc UpdateUser(UpdateUserReq) returns (UpdateUserResp);
+  rpc SearchUser(SearchUserReq) returns (SearchUserResp);
 }

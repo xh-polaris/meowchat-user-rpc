@@ -5,11 +5,18 @@ import (
 	"github.com/zeromicro/go-zero/zrpc"
 )
 
+type ElasticsearchConf struct {
+	Addresses []string
+	Username  string
+	Password  string
+}
+
 type Config struct {
 	zrpc.RpcServerConf
 	Mongo struct {
 		URL string
 		DB  string
 	}
-	CacheConf cache.CacheConf
+	CacheConf     cache.CacheConf
+	Elasticsearch ElasticsearchConf
 }

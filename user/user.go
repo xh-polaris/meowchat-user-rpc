@@ -15,12 +15,16 @@ import (
 type (
 	GetUserReq     = pb.GetUserReq
 	GetUserResp    = pb.GetUserResp
+	SearchUserReq  = pb.SearchUserReq
+	SearchUserResp = pb.SearchUserResp
 	UpdateUserReq  = pb.UpdateUserReq
 	UpdateUserResp = pb.UpdateUserResp
+	User           = pb.User
 
 	User interface {
 		GetUser(ctx context.Context, in *GetUserReq, opts ...grpc.CallOption) (*GetUserResp, error)
 		UpdateUser(ctx context.Context, in *UpdateUserReq, opts ...grpc.CallOption) (*UpdateUserResp, error)
+		SearchUser(ctx context.Context, in *SearchUserReq, opts ...grpc.CallOption) (*SearchUserResp, error)
 	}
 
 	defaultUser struct {
@@ -42,4 +46,9 @@ func (m *defaultUser) GetUser(ctx context.Context, in *GetUserReq, opts ...grpc.
 func (m *defaultUser) UpdateUser(ctx context.Context, in *UpdateUserReq, opts ...grpc.CallOption) (*UpdateUserResp, error) {
 	client := pb.NewUserClient(m.cli.Conn())
 	return client.UpdateUser(ctx, in, opts...)
+}
+
+func (m *defaultUser) SearchUser(ctx context.Context, in *SearchUserReq, opts ...grpc.CallOption) (*SearchUserResp, error) {
+	client := pb.NewUserClient(m.cli.Conn())
+	return client.SearchUser(ctx, in, opts...)
 }

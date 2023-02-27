@@ -26,15 +26,15 @@ func NewUpdateUserLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Update
 }
 
 func (l *UpdateUserLogic) UpdateUser(in *pb.UpdateUserReq) (*pb.UpdateUserResp, error) {
-	oid, err := primitive.ObjectIDFromHex(in.UserId)
+	oid, err := primitive.ObjectIDFromHex(in.User.Id)
 	if err != nil {
 		return nil, errorx.ErrInvalidObjectId
 	}
 
 	err = l.svcCtx.UserModel.UpsertUser(l.ctx, &model.User{
 		ID:        oid,
-		AvatarUrl: in.AvatarUrl,
-		Nickname:  in.Nickname,
+		AvatarUrl: in.User.AvatarUrl,
+		Nickname:  in.User.Nickname,
 	})
 	if err != nil {
 		return nil, err

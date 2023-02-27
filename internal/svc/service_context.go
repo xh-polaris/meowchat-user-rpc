@@ -13,6 +13,6 @@ type ServiceContext struct {
 func NewServiceContext(c config.Config) *ServiceContext {
 	return &ServiceContext{
 		Config:    c,
-		UserModel: model.NewUserModel(c.Mongo.URL, c.Mongo.DB, model.UserCollectionName, c.CacheConf),
+		UserModel: model.NewUserModel(c.Mongo.URL, c.Mongo.DB, model.UserCollectionName, c.CacheConf, c.Elasticsearch),
 	}
 }

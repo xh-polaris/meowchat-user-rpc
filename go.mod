@@ -3,6 +3,8 @@ module github.com/xh-polaris/meowchat-user-rpc
 go 1.18
 
 require (
+	github.com/elastic/go-elasticsearch/v8 v8.6.0
+	github.com/mitchellh/mapstructure v1.1.2
 	github.com/zeromicro/go-zero v1.4.3
 	go.mongodb.org/mongo-driver v1.11.1
 	google.golang.org/grpc v1.51.0
@@ -17,6 +19,7 @@ require (
 	github.com/coreos/go-systemd/v22 v22.3.2 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f // indirect
+	github.com/elastic/elastic-transport-go/v8 v8.0.0-20211216131617-bbee439d559c // indirect
 	github.com/fatih/color v1.13.0 // indirect
 	github.com/felixge/fgprof v0.9.3 // indirect
 	github.com/go-logr/logr v1.2.3 // indirect
