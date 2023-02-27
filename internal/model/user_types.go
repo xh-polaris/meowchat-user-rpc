@@ -13,3 +13,11 @@ type User struct {
 	UpdateAt  time.Time          `bson:"updateAt,omitempty" json:"updateAt,omitempty"`
 	CreateAt  time.Time          `bson:"createAt,omitempty" json:"createAt,omitempty"`
 }
+
+const (
+	ID        = "_id"
+	AvatarUrl = "avatarUrl"
+	Nickname  = "nickname"
+	UpdateAt  = "updateAt"
+	CreateAt  = "createAt"
+)

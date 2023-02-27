@@ -31,8 +31,10 @@ func (l *GetUserLogic) GetUser(in *pb.GetUserReq) (*pb.GetUserResp, error) {
 	}
 
 	return &pb.GetUserResp{
-		UserId:    user.ID.Hex(),
-		AvatarUrl: user.AvatarUrl,
-		Nickname:  user.Nickname,
+		User: &pb.User{
+			Id:        user.ID.Hex(),
+			AvatarUrl: user.AvatarUrl,
+			Nickname:  user.Nickname,
+		},
 	}, nil
 }
