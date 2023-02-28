@@ -37,7 +37,7 @@ message SearchUserResp {
   int64 total = 2;
 }
 
-service user {
+service userRpc {
   rpc GetUser(GetUserReq) returns (GetUserResp);
   rpc UpdateUser(UpdateUserReq) returns (UpdateUserResp);
   rpc SearchUser(SearchUserReq) returns (SearchUserResp);
