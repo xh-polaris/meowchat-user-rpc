@@ -14,7 +14,6 @@ ADD go.mod .
 ADD go.sum .
 RUN go mod download
 COPY . .
-COPY ./etc /app/etc
 RUN go build -ldflags="-s -w" -o /app/user-rpc .
 
 
@@ -26,6 +25,5 @@ ENV TZ Asia/Shanghai
 
 WORKDIR /app
 COPY --from=builder /app/user-rpc /app/user-rpc
-COPY --from=builder /app/etc /app/etc
 
 CMD ["./user-rpc", "-f", "etc/user.yaml"]
