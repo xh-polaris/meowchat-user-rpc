@@ -93,7 +93,7 @@ func (m customUserModel) UpsertUser(ctx context.Context, data *User) error {
 	return err
 }
 
-func (m customUserModel) SearchUser(ctx context.Context, name string, skip, count int64) ([]*User, int64, error) {
+func (m customUserModel) SearchUser(ctx context.Context, name string, count, skip int64) ([]*User, int64, error) {
 	search := m.es.Search
 	query := map[string]any{
 		"from": skip,
